@@ -49,7 +49,7 @@
 # #                      outside the class with the help of that class or object
 
 
-# print(Myclass.__b)   # THIS WLL GIVE ERROR , Because private class cannot be 
+# print(Myclass.__b)   # THIS WLL GIVE ERROR , Because private variable cannot be 
 # #                      accessed outside the class
 
 
@@ -76,7 +76,7 @@
 
 
 
-## CAN WE CHANGE THE PRIVATE VARIBLE FROMOUTSIDE OF THE CLASS?
+## CAN WE CHANGE THE PRIVATE VARIBLE FROM OUTSIDE OF THE CLASS?
 
 # Yes we can, we have to create another method just to change the value
 
@@ -196,7 +196,7 @@
 #         print("eats grass")
         
 # class Cow2(Cow):       # here we are creating another subclass that inherit
-#                          class COw and implement abstractmethod Voice
+#                          class Cow and implement abstractmethod Voice
 #     def voice(self):
 #         print("cow Moo's")
 
