@@ -695,6 +695,13 @@
 #     res[a[i]] = b[i]
 # print(res)
 
+## Method 2:
+
+# a = [1,2,3,4]
+# b = ["a","b", "c", "d"]
+# res = dict(zip(a,b))
+# print(res)
+
 
 
 
@@ -759,7 +766,7 @@
 # Example 
 #print("program ha started")
 #print(10/0)  #this will throw ZeroDivisionError
-#prnt("Program has ended")
+#print("Program has ended")
 
 # Output
 # Program has started
@@ -869,3 +876,83 @@
 
 # num = 0 
 # enterage(num)
+
+
+
+
+
+
+# s = '''Day ** Sun#Mon#Tue
+
+# Month*Jan#Feb
+
+# Num*1##2#3
+
+# Alpha***a#b##c'''
+
+
+
+# res = {}
+
+# a
+# # s = s.split("*")
+# # print(s)
+
+# keys = []
+
+# for i in s:
+#     inner = ""
+#     if i == "*":
+#         break
+#     else:
+#         inner+=i
+
+
+
+ 
+
+# # [{Day: [Sun, Mon, Tue]},
+
+# # {Month: [Jan, Feb],
+
+# # { Num: [1, 2, 3],
+
+# # {Alpha: [a, b, c]
+
+# # ]
+
+
+
+# Write a program to find out the longest ascending order sub list in a given list.
+
+ 
+
+# Exmaple:
+
+ 
+
+# I/P: 3, 4, 2, 3, 4, 5, 6, 1, 3, 5, 3, 6
+
+ 
+
+# O/P: 2, 3, 4, 5, 6
+
+# def longset_sublist(num):
+#     res = []
+#     k = 
+#     # for i in range(2, len(nums)+1):
+#     #     temp = []
+#     #     if num[i] > num[i-1]:
+#     #         count+=1
+#     #         temp.append(num[i])
+#     i , j = 0 , 1
+    
+#     while j <= len(nums):
+#         temp = []
+#         if nums[j] > nums[j-1]:
+#             temp.append[i]
+#             j+=1
+#             i+=1
+#         else:
+#             i = j
+#             j+=1
