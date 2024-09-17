@@ -326,7 +326,7 @@
 #     def info(self):
 #         print(f"Name is {self.name}, and age is {self.age}")
 # class Person2(Person1):
-#     def lang():
+#     def lang(self):
 #         print(f"person speaks english language")
 
 # a = Person1("akarsh", 24)

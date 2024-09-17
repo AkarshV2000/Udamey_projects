@@ -20,7 +20,7 @@
 
 ### how to write in a file
 
-# f = open("example_file.txt", "")
+# f = open("example_file.txt", "w")
 # f.write("I need to work")
 # f.close()
 
@@ -97,17 +97,24 @@
 ## Example: From a file containing numbers seperated by comma, prin the count of even numbers
 # 1,2,45,55,86,76
 
-def count_even_numbers():
-    with open("example_file.txt", "r") as f:
-        count = 0
-        data = f.read()
-        new_data = data.split(",")
-        for i in new_data:
-            if int(i) %2 == 0:
-                count+=1
-    return count
+# def count_even_numbers():
+#     with open("example_file.txt", "r") as f:
+#         count = 0
+#         data = f.read()
+#         new_data = data.split(",")
+#         for i in new_data:
+#             if int(i) %2 == 0:
+#                 count+=1
+#     return count
 
-print(count_even_numbers())
+# print(count_even_numbers())
+with open("example_file.txt", "r") as f:
+    data = f.read()
+    count = 0
+    for i in data:
+        if i == "0":
+            count+=1
+    print(count)
 
 
 
