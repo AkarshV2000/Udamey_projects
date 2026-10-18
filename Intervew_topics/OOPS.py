@@ -96,6 +96,115 @@
 # obj.print_id()
 
 
+
+### @property Decorator
+# 
+# @Property Allows you to access a method like an attribute while retaining control over reading and updating its value
+# 
+# class Employee:
+    # def __init__(self, salary):
+    #     self.__salary = salary
+
+    # @property
+    # def salary(self):
+    #     return self.__salary 
+
+#emp = Employee(5000)
+# print(emp.salary)                ###### output would be 5000
+
+### NOTE 
+# Normally, you call a method using parentheses, like emp.get_salary().
+#But because salary has the @property decorator, Python automatically invokes the method when you access emp.salary.
+
+
+### EXAMPLE that has everything related to encapsulation
+
+# class EmployeeData:
+#     # Constructor: automatically runs when a new EmployeeData object is created
+#     def __init__(self, emp_id, emp_name, emp_role, salary):
+#         # Store employee ID as a public instance variable
+#         self.emp_id = emp_id
+
+#         # Store employee name as a public instance variable
+#         self.emp_name = emp_name
+
+#         # Store employee role as a public instance variable
+#         self.emp_role = emp_role
+
+#         # Store salary as a public instance variable
+#         self.salary = salary
+
+#     # Public method: returns the employee's name
+#     def get_name(self):
+#         return self.emp_name
+
+#     # @property allows this method to be accessed like an attribute
+#     # Instead of writing emp1.get_id(), we write emp1.get_id
+#     @property
+#     def get_id(self):
+#         # Return the employee's ID
+#         return self.emp_id
+
+#     # @property allows the role to be accessed like an attribute
+#     # Instead of writing emp1.get_role(), we write emp1.get_role
+#     @property
+#     def get_role(self):
+#         # Return the employee's role
+#         return self.emp_role
+
+#     # Private method: double underscore triggers name mangling
+#     # Intended for internal use within the class
+#     def __get_salary(self):
+#         # Return the employee's salary
+#         return self.salary
+
+#     # Public method: calls the private method internally
+#     def display_salary(self):
+#         # Return the value provided by __get_salary()
+#         return self.__get_salary()
+
+
+# # Create the first EmployeeData object
+# # __init__ receives: emp_id=101, emp_name="Akarsh",
+# # emp_role="SWE-2", salary=5000
+# emp1 = EmployeeData(101, "Akarsh", "SWE-2", 5000)
+
+# # Access the public emp_id attribute directly
+# print(emp1.emp_id)          # Output: 101
+
+# # Access the public salary attribute directly
+# print(emp1.salary)          # Output: 5000
+
+# # Call the get_name() method using parentheses
+# print(emp1.get_name())      # Output: Akarsh
+
+# # Access the ID through a property; no parentheses needed
+# print(emp1.get_id)          # Output: 101
+
+# # Access the role through a property; no parentheses needed
+# print(emp1.get_role)        # Output: SWE-2
+
+# # Call the public method, which internally calls __get_salary()
+# print(emp1.display_salary())  # Output: 5000
+
+
+# # Create a second, independent EmployeeData object
+# emp2 = EmployeeData(102, "Ayush", "SWE-3", 9000)
+
+# # Retrieve the second employee's name
+# print(emp2.get_name())      # Output: Ayush
+
+
+
+# Important notes for revision
+# Constructor	__init__()	Initializes each new object
+# Instance variable	self.emp_id	Stores data belonging to an object
+# Public attribute	self.salary	Can be accessed directly from outside
+# Instance method	get_name()	Called using parentheses
+# Property	@property	Allows method-like logic to be accessed as an attribute
+# Private method	__get_salary()	Name-mangled to reduce accidental access
+# Multiple objects	emp1, emp2	Each object has its own instance data
+
 # ==============================================================================================
 
 
@@ -121,26 +230,69 @@
 
 # EXAMPLE:
 
-# from abc import ABC, abstractmethod    # We need to iimport class ABC and 
-#                                          class abstractmethod from module ABC
+# my Understanding on Abstract clas
 
-# class Animal(ABC):                #creating an abstract class
-#     @abstractmethod
-#     def eat(self):                # abstract method
-#         pass
-    
-# class Tiger(Animal):              #inheriting abstract class
-#     def eat(self):                #overriding the abstract method
-#         print("eats flesh")
-# class Cow(Animal):                #inheriting abstract class
-#     def eat(self):                #overriding the abstract method
-#         print("eats grass")
+###  ABstract class banane ke liye we have to impport ABC from abc (Full form of abc/ABC --> Abstract base class)
+### and jo bhi class banao usme ABC import kro, then it will be abstract class
+## and abstract class me we need a method jiska decorator hoga @abstractmethod and us method ke under koi bhi content ni hoga and use hum bas pass karenge
+## and isi method ko abstract method bolte hai
 
-# t = Tiger()                      # creating instace from a subclass
-# t.eat()                           
+#### now why do we need abstract class and bs, iski importance kya hai???  ####
 
-# c = Cow()
-# c.eat()
+### toh basically, in below example, ek bankdata ki class hai jise neeche wli class me inherit kia gya hai
+# and if you need to inherit some bank data, your other classs should have security too, means idhr absrtraction kaam aata hai
+# means, abstract calss ne joi bhi abstract method define hote hai, those are very important
+# call it ki abstract class ne kuch rules define kar die ,and if koi class in abstractcall ke methods ko inherit krna chahti hai then it has to follow those rules
+# idhr jo bhi abstract method hota hai whi rules hote hai
+# for eg, neech security is abstract method aka its an rule, toh jo bhi class bank data ko inherit kregi use ye rule apply krna padega
+# toh idhe bankdata bolti ki if tumhe mera database wala method use krna hai toh phle apne class me ek security ka method likho, which can be anmything but security ka method hona chaiye
+# you cant access bank data without mere rules follow kre bina
+# and if koi aur rule/abstractmethod bankdata class  banati hai then wo follow krne pdenge if they need to access methods of bankdata
+# Toh mobileapp me whi kia, mobileapp class ko bankdata class se database method ki need thi, toh database class ko access krne ke liye mibileapp class ko phle sare abstractmethod follow krene pdenge, then only access milega  
+
+
+# from abc import ABC,abstractmethod
+
+# class BankData(ABC):
+
+#   def database(self):
+#     print(f"this is banks database")
+#   @abstractmethod
+#   def security(self):
+#     pass
+
+# class MobileApp(BankData):
+#   def show_balance(self):
+#     print(f"your balance is 300rs")
+#   def security(self):
+#     print(f"this class is secure")
+  
+
+# obj = MobileApp()
+# obj.database()
+# obj.show_balance()
+
+
+## some questions for interview
+# if maine mobileapp me security class ni bani then kya hoga?
+## error ayega saying that ---> TypeError: Can't instantiate abstract class MobileApp without an implementation for abstract method 'security'
+
+## kya abstract class ka method {database} directly access kr sakte hai?
+## nhi , access to dur ki baat hai, you cant even make object from bankdata calass directly 
+
+# from abc import ABC,abstractmethod
+
+# class BankData(ABC):
+
+#   def database(self):
+#     print(f"this is banks database")
+#   @abstractmethod
+#   def security(self):
+#     pass
+
+# obj = BankData()          ## Error: TypeError: Can't instantiate abstract class BankData without an implementation for abstract method 'security'
+
+  ### Object banate time hi error aajayega  
 
 
 ##   WHAT IF WE HAVE MORE THEN ONE ABSTRACT METHOD DEFINED IN ABSTRACT CLASS??
@@ -277,6 +429,30 @@
 
 
 ## WHAT IS METHOD OVERRIDING? EXPLAIN WITH EXAMPLE?
+
+#--> Method Overriding in python   ###############
+#   Method overriding is a concept in object-oriented programming (OOP) 
+#   where a subclass provides a specific implementation of a method that is
+#   already defined in its superclass. This allows the subclass to modify or
+#   extend the behavior of the method inherited from the superclass.
+
+# class Shape:
+#     def __init__(self,x,y):
+#         self.x = x
+#         self.y = y
+#     def area(self):
+#         return self.x * self.y
+    
+# class Circle(Shape):
+#     def __init__(self, radius):
+#         self.radius = radius
+#         super().__init__(radius,radius)
+
+#     def area(self):
+#         return 3.14 * super().area()
+    
+# c = Circle(5)
+# print(c.area())
 
 #--> whenever we write method name with same signature in parent and child class 
 #    called method overriding
@@ -439,26 +615,3 @@
 
 
 
-#--> Method Overriding in python   ###############
-#   Method overriding is a concept in object-oriented programming (OOP) 
-#   where a subclass provides a specific implementation of a method that is
-#   already defined in its superclass. This allows the subclass to modify or
-#   extend the behavior of the method inherited from the superclass.
-
-# class Shape:
-#     def __init__(self,x,y):
-#         self.x = x
-#         self.y = y
-#     def area(self):
-#         return self.x * self.y
-    
-# class Circle(Shape):
-#     def __init__(self, radius):
-#         self.radius = radius
-#         super().__init__(radius,radius)
-
-#     def area(self):
-#         return 3.14 * super().area()
-    
-# c = Circle(5)
-# print(c.area())
